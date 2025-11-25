@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ビルトインフォーマッタ一覧</title>
+  <style>
+    body { font-family: sans-serif; }
+    table { border-collapse: collapse; width: 100%; max-width: 900px; }
+    th, td { border: 1px solid #ccc; padding: 8px; }
+    th { background: #f5f5f5; text-align: left; }
+    code { background: #f0f0f0; padding: 2px 4px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>ビルトインフォーマッタ動作確認</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>data-format</th>
+        <th>入力値</th>
+        <th>出力</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>number</code></td>
+        <td><span data-bind="inputs.number"></span></td>
+        <td><span data-bind="inputs.number" data-format="number"></span></td>
+      </tr>
+      <tr>
+        <td><code>currency</code></td>
+        <td><span data-bind="inputs.number"></span></td>
+        <td><span data-bind="inputs.number" data-format="currency"></span></td>
+      </tr>
+      <tr>
+        <td><code>date</code></td>
+        <td><span data-bind="inputs.date"></span></td>
+        <td><span data-bind="inputs.date" data-format="date"></span></td>
+      </tr>
+      <tr>
+        <td><code>datetime</code></td>
+        <td><span data-bind="inputs.datetime"></span></td>
+        <td><span data-bind="inputs.datetime" data-format="datetime"></span></td>
+      </tr>
+      <tr>
+        <td><code>uppercase</code></td>
+        <td><span data-bind="inputs.text"></span></td>
+        <td><span data-bind="inputs.text" data-format="uppercase"></span></td>
+      </tr>
+      <tr>
+        <td><code>lowercase</code></td>
+        <td><span data-bind="inputs.text"></span></td>
+        <td><span data-bind="inputs.text" data-format="lowercase"></span></td>
+      </tr>
+      <tr>
+        <td><code>trim</code></td>
+        <td><span data-bind="inputs.spaced"></span></td>
+        <td><span data-bind="inputs.spaced" data-format="trim"></span></td>
+      </tr>
+      <tr>
+        <td><code>truncate</code></td>
+        <td><span data-bind="inputs.longText"></span></td>
+        <td><span data-bind="inputs.longText" data-format="truncate"></span></td>
+      </tr>
+      <tr>
+        <td><code>truncate:20</code></td>
+        <td><span data-bind="inputs.longText"></span></td>
+        <td><span data-bind="inputs.longText" data-format="truncate:20"></span></td>
+      </tr>
+      <tr>
+        <td><code>json</code></td>
+        <td><span data-bind="inputs.object"></span></td>
+        <td><span data-bind="inputs.object" data-format="json"></span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script id="plainbind-data" type="application/json">
+  {
+    "inputs": {
+      "number": 1234567,
+      "date": "2024-01-05",
+      "datetime": "2024-01-05T14:30:00Z",
+      "text": "Hello World",
+      "spaced": "   trim me   ",
+      "longText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam et urna a nibh hendrerit blandit.",
+      "object": { "foo": "bar", "baz": 123 }
+    }
+  }
+  </script>
+
+  <script src="../dist/plainbind.js"></script>
+</body>
+</html>

@@ -95,6 +95,17 @@ requests resolve to an empty object—callers should handle `ctx.data` according
 | `data-placeholder`  | Substitute text when bound value is empty          |
 | `data-link`         | Shorthand for `href` assignment on anchors         |
 
+### Built-in formatters
+
+- `number` : `toLocaleString` with digit grouping
+- `currency` : Yen display (`¥` + `toLocaleString("ja-JP")`)
+- `date` : `YYYY/MM/DD`
+- `datetime` : `YYYY/MM/DD HH:mm`
+- `uppercase` / `lowercase` : casing helpers
+- `trim` : trim whitespace
+- `truncate[:len]` : cut to 100 chars (or given length) with `...`
+- `json` : `JSON.stringify` (debug)
+
 ### Example
 
 ```html

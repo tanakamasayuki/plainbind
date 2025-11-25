@@ -11,6 +11,73 @@
   let initialized = false;
   let lastContext = null;
 
+  function registerBuiltinFormatters() {
+    const toNumber = (value) => {
+      const num = Number(value);
+      return Number.isNaN(num) ? null : num;
+    };
+
+    registerFormatter("number", (value) => {
+      const num = toNumber(value);
+      return num === null ? value : num.toLocaleString();
+    });
+
+    registerFormatter("currency", (value) => {
+      const num = toNumber(value);
+      return num === null ? value : "¥" + num.toLocaleString("ja-JP");
+    });
+
+    registerFormatter("date", (value) => {
+      if (!value && value !== 0) return value;
+      const d = new Date(value);
+      if (Number.isNaN(d.getTime())) return value;
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return `${y}/${m}/${day}`;
+    });
+
+    registerFormatter("datetime", (value) => {
+      if (!value && value !== 0) return value;
+      const d = new Date(value);
+      if (Number.isNaN(d.getTime())) return value;
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      const h = String(d.getHours()).padStart(2, "0");
+      const min = String(d.getMinutes()).padStart(2, "0");
+      return `${y}/${m}/${day} ${h}:${min}`;
+    });
+
+    registerFormatter("uppercase", (value) => {
+      return value == null ? value : String(value).toUpperCase();
+    });
+
+    registerFormatter("lowercase", (value) => {
+      return value == null ? value : String(value).toLowerCase();
+    });
+
+    registerFormatter("trim", (value) => {
+      return value == null ? value : String(value).trim();
+    });
+
+    registerFormatter("truncate", (value, _ctx, arg) => {
+      if (value == null) return value;
+      const limit = arg && !Number.isNaN(Number(arg)) ? Number(arg) : 100;
+      const str = String(value);
+      if (str.length <= limit) return str;
+      return str.slice(0, limit) + "...";
+    });
+
+    registerFormatter("json", (value) => {
+      try {
+        return JSON.stringify(value);
+      } catch (err) {
+        return value;
+      }
+    });
+  }
+
   function registerFormatter(name, fn) {
     if (typeof name !== "string" || !name) {
       throw new Error("Formatter name must be a non-empty string");
@@ -70,6 +137,16 @@
       .filter(Boolean);
   }
 
+  function parseFormatSpec(spec) {
+    if (!spec) return null;
+    const raw = String(spec).trim();
+    if (!raw) return null;
+    const parts = raw.split(":");
+    const name = parts.shift().trim();
+    const arg = parts.length ? parts.join(":").trim() : null;
+    return { name, arg };
+  }
+
   function lookupInScope(name, scope) {
     let cursor = scope;
     while (cursor) {
@@ -97,12 +174,13 @@
     return value == null ? "" : value;
   }
 
-  function applyFormat(value, formatterName, scope) {
-    if (!formatterName) return value;
-    const fn = formatterMap.get(formatterName);
+  function applyFormat(value, formatterSpec, scope) {
+    const parsed = parseFormatSpec(formatterSpec);
+    if (!parsed || !parsed.name) return value;
+    const fn = formatterMap.get(parsed.name);
     if (!fn) return value;
     try {
-      return fn(value, scope.vars);
+      return fn(value, scope.vars, parsed.arg);
     } catch (err) {
       console.error("[PlainBind] formatter error", err);
       return value;
@@ -320,6 +398,7 @@
     version: VERSION,
   };
 
+  registerBuiltinFormatters();
   global.PlainBind = PlainBind;
   if (typeof module === "object" && typeof module.exports !== "undefined") {
     module.exports = PlainBind;

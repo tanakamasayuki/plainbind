@@ -118,6 +118,17 @@ PlainBind.js は **プレーン HTML + data-* 属性 + JSON** で UI を構築�
 PlainBind.registerFormatter("currency", (v)=>"¥"+Number(v).toLocaleString());
 ```
 
+ビルトインフォーマッタ
+
+- `number` : 数値を桁区切りで表示（整数想定）
+- `currency` : 円表記（¥ + toLocaleString("ja-JP")）
+- `date` : 日付を `YYYY/MM/DD` 形式に整形（不正値はそのまま）
+- `datetime` : 日時を `YYYY/MM/DD HH:mm` に整形
+- `uppercase` / `lowercase` : 英字の大小変換
+- `trim` : 前後の空白を除去
+- `truncate` : 100 文字（またはオプション指定長）で省略記号付きに切り詰め
+- `json` : オブジェクト/配列を JSON 文字列化（デバッグ用）
+
 ## 10. data-placeholder（値が空なら代替表示）
 ```html
 <span data-bind="user.nickname" data-placeholder="未設定"></span>

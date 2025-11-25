@@ -90,6 +90,17 @@ PlainBind は次の優先順位でデータを探します。
 | `data-placeholder`   | 値が空のとき代替文字列を表示                       |
 | `data-link`          | a 要素の `href` をショートカットで設定             |
 
+### ビルトインフォーマッタ
+
+- `number` : 数値を桁区切り表示
+- `currency` : 円表記（¥ + toLocaleString("ja-JP")）
+- `date` : `YYYY/MM/DD` に整形
+- `datetime` : `YYYY/MM/DD HH:mm` に整形
+- `uppercase` / `lowercase` : 英字の大小変換
+- `trim` : 前後の空白を除去
+- `truncate[:len]` : 100 文字（または指定長）で `...` 付きに切り詰め
+- `json` : `JSON.stringify`（デバッグ用）
+
 ### サンプル
 
 ```html
