@@ -7,6 +7,8 @@ documents into data-aware pages by only using `data-*` attributes plus JSON.
 Drop a single script tag on the page and the markup becomes actionable—no build
 step, no framework runtime, and no designer-unfriendly syntax.
 
+> npm: https://www.npmjs.com/package/plainbind
+
 > ⚠︎ The library implementation is work-in-progress.  
 > This document captures the public contract we intend to ship on npm so that
 > consumers can rely on a stable API once the first release is published.
