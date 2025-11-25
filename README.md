@@ -20,7 +20,7 @@ and later move to npm if you need bundler integration.
 
 ```html
 <!-- CDN / local bundle once published -->
-<script src="https://cdn.example.com/plainbind/latest/plainbind.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/plainbind@latest/dist/plainbind.min.js"></script>
 ```
 
 ```bash

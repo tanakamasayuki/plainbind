@@ -17,7 +17,7 @@ PlainBind.js はプレーン HTML + `data-*` 属性 + JSON だけで UI を構�
 
 ```html
 <!-- 公開後の CDN / ローカルバンドルを想定 -->
-<script src="https://cdn.example.com/plainbind/latest/plainbind.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/plainbind@latest/dist/plainbind.min.js"></script>
 ```
 
 ```bash
