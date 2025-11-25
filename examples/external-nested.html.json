@@ -1,0 +1,16 @@
+{
+  "title": "外部 JSON で入れ子の data-repeat を確認",
+  "groups": [
+    {
+      "name": "開発チーム",
+      "members": [
+        { "name": "佐藤", "role": "フロントエンド", "active": true, "inactive": false },
+        { "name": "田中", "role": "バックエンド",   "active": false, "inactive": true }
+      ]
+    },
+    {
+      "name": "デザインチーム",
+      "members": []
+    }
+  ]
+}

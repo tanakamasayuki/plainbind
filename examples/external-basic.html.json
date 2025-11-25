@@ -1,0 +1,6 @@
+{
+  "title": "外部 JSON 読み込みの基本",
+  "lead": "inline script を使わずに {html}.json からデータを取得します。",
+  "hero": "https://placehold.co/200x120?text=External",
+  "cta": { "url": "https://example.com", "label": "外部 JSON でセットされたリンク" }
+}

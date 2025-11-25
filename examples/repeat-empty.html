@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Repeat / Empty</title>
+</head>
+<body>
+  <h1>繰り返しと空データ</h1>
+
+  <ul>
+    <li data-repeat="item in items">
+      <span data-bind="item.name"></span>
+      <span data-bind="item.price" data-format="currency"></span>
+    </li>
+    <li data-empty="items">データがありません</li>
+  </ul>
+
+  <script id="plainbind-data" type="application/json">
+  {
+    "items": [
+      { "name": "りんご", "price": 120 },
+      { "name": "みかん", "price": 90 }
+    ]
+  }
+  </script>
+  <script src="../dist/plainbind.js"></script>
+  <script>
+    PlainBind.registerFormatter("currency", (v) => "¥" + Number(v || 0).toLocaleString("ja-JP"));
+  </script>
+</body>
+</html>

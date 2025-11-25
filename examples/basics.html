@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>PlainBind Basics</title>
+</head>
+<body>
+  <h1 data-bind="title"></h1>
+  <p data-bind="description" data-placeholder="説明がありません"></p>
+
+  <p>
+    <a data-link="cta.url" data-bind="cta.label"></a>
+  </p>
+
+  <img data-bind-attr-src="hero" alt="Hero" width="200">
+
+  <script id="plainbind-data" type="application/json">
+  {
+    "title": "PlainBind.js 基本サンプル",
+    "description": "data-bind / data-bind-attr / data-link の動作確認。",
+    "hero": "https://placehold.co/200x120?text=Hero",
+    "cta": { "url": "https://example.com", "label": "くわしく見る" }
+  }
+  </script>
+  <script src="../dist/plainbind.js"></script>
+</body>
+</html>

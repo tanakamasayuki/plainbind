@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>外部 JSON で入れ子スコープ</title>
+  <style>
+    .active { color: green; }
+    .inactive { color: #777; }
+  </style>
+</head>
+<body>
+  <h1 data-bind="title"></h1>
+
+  <section data-repeat="group in groups">
+    <h2 data-bind="group.name"></h2>
+    <ul>
+      <li data-repeat="member in group.members" data-class-when="member.active:active, member.inactive:inactive">
+        <span data-bind="member.name"></span>
+        <span data-bind="member.role" data-placeholder="役割未設定"></span>
+      </li>
+      <li data-empty="group.members">メンバーがいません</li>
+    </ul>
+  </section>
+
+  <script src="../dist/plainbind.js"></script>
+</body>
+</html>

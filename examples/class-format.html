@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Class / Format / Attr</title>
+  <style>
+    .active { color: green; }
+    .inactive { color: #888; }
+    .new { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>クラス条件とフォーマット</h1>
+
+  <ul>
+    <li data-repeat="user in users" data-class-when="user.active:active, user.inactive:inactive, user.new:new">
+      <span data-bind="user.name"></span>
+      <span data-bind="user.joinedAt" data-format="date"></span>
+      <a data-link="user.profile" data-bind="user.profileLabel"></a>
+    </li>
+  </ul>
+
+  <script id="plainbind-data" type="application/json">
+  {
+    "users": [
+      { "name": "山田", "active": true,  "inactive": false, "new": true,  "joinedAt": "2023-10-10", "profile": "https://example.com/u/yamada", "profileLabel": "プロフィール" },
+      { "name": "佐藤", "active": false, "inactive": true,  "new": false, "joinedAt": "2021-04-02", "profile": "https://example.com/u/sato",   "profileLabel": "プロフィール" }
+    ]
+  }
+  </script>
+  <script src="../dist/plainbind.js"></script>
+  <script>
+    PlainBind.registerFormatter("date", (v) => {
+      if (!v) return "";
+      const d = new Date(v);
+      if (Number.isNaN(d.getTime())) return v;
+      return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}`;
+    });
+  </script>
+</body>
+</html>

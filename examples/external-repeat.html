@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>外部 JSON で繰り返し</title>
+</head>
+<body>
+  <h1 data-bind="title"></h1>
+
+  <ul>
+    <li data-repeat="product in products" data-class-when="product.featured:featured">
+      <strong data-bind="product.name"></strong>
+      <span data-bind="product.price" data-format="currency"></span>
+      <span data-show="product.featured">★おすすめ</span>
+    </li>
+    <li data-empty="products">商品がありません</li>
+  </ul>
+
+  <style>
+    .featured { color: #d2691e; }
+  </style>
+
+  <script src="../dist/plainbind.js"></script>
+  <script>
+    PlainBind.registerFormatter("currency", (v) => "¥" + Number(v || 0).toLocaleString("ja-JP"));
+  </script>
+</body>
+</html>

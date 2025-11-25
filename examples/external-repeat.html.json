@@ -1,0 +1,8 @@
+{
+  "title": "外部 JSON で繰り返しを実行",
+  "products": [
+    { "name": "コーヒー", "price": 380, "featured": true },
+    { "name": "紅茶",     "price": 320, "featured": false },
+    { "name": "カフェラテ", "price": 450, "featured": false }
+  ]
+}

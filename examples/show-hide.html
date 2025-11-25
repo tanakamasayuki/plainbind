@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Show / Hide / Placeholder</title>
+</head>
+<body>
+  <h1>表示・非表示・プレースホルダ</h1>
+
+  <p data-show="user.isActive">このユーザーは有効です。</p>
+  <p data-hide="user.isActive">このユーザーは無効です。</p>
+
+  <p>
+    ニックネーム:
+    <span data-bind="user.nickname" data-placeholder="未設定"></span>
+  </p>
+
+  <script id="plainbind-data" type="application/json">
+  {
+    "user": {
+      "isActive": false,
+      "nickname": ""
+    }
+  }
+  </script>
+  <script src="../dist/plainbind.js"></script>
+</body>
+</html>
