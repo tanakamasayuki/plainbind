@@ -181,6 +181,16 @@ document.addEventListener("plainbind:ready", (event) => {
 
 ---
 
+## リリース手順 (npm)
+
+1. バージョンを上げる: `npm version patch` （または `minor`/`major`）
+2. ビルド: `npm run build`
+3. 公開内容を確認: `npm pack --dry-run`（`dist` と README/Licence が含まれることを確認）
+4. 公開: `npm publish --access public`（スコープ付きなら適宜）
+5. Git も反映: `git push && git push --tags`
+
+---
+
 ## ライセンス
 
 PlainBind.js は MIT License で提供されます。詳細は `LICENSE` を参照してください。

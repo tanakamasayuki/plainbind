@@ -191,6 +191,16 @@ A legacy build or polyfill guide can be added later if demand appears.
 
 ---
 
+## Release (npm)
+
+1. Update version: `npm version patch` (or `minor`/`major`).
+2. Build artifacts: `npm run build`.
+3. Inspect package contents: `npm pack --dry-run` (should include dist/ and READMEs).
+4. Publish: `npm publish --access public` (if not scoped).
+5. Push git changes and tag: `git push && git push --tags`.
+
+---
+
 ## License
 
 PlainBind.js is available under the MIT License. See `LICENSE` for details.
