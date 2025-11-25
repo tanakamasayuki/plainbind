@@ -7,6 +7,14 @@
   "browser": "dist/plainbind.min.js",
   "unpkg": "dist/plainbind.min.js",
   "jsdelivr": "dist/plainbind.min.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanakamasayuki/plainbind.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tanakamasayuki/plainbind/issues"
+  },
+  "homepage": "https://github.com/tanakamasayuki/plainbind#readme",
   "exports": {
     ".": "./dist/plainbind.js",
     "./plainbind.js": "./dist/plainbind.js"
@@ -29,7 +37,7 @@
     "html",
     "lightweight"
   ],
-  "author": "",
+  "author": "TANAKA Masayuki",
   "license": "MIT",
   "devDependencies": {
     "esbuild": "^0.21.3"
