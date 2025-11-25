@@ -1,0 +1,37 @@
+{
+  "name": "plainbind",
+  "version": "0.1.0",
+  "description": "HTML-first, data-* driven template/data binder with zero build requirements.",
+  "main": "dist/plainbind.js",
+  "module": "dist/plainbind.js",
+  "browser": "dist/plainbind.min.js",
+  "unpkg": "dist/plainbind.min.js",
+  "jsdelivr": "dist/plainbind.min.js",
+  "exports": {
+    ".": "./dist/plainbind.js",
+    "./plainbind.js": "./dist/plainbind.js"
+  },
+  "files": [
+    "dist",
+    "plainbind.js",
+    "README.md",
+    "README.ja.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "template",
+    "data-binding",
+    "vanilla-js",
+    "html",
+    "lightweight"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.21.3"
+  }
+}
