@@ -91,11 +91,13 @@ requests resolve to an empty object—callers should handle `ctx.data` according
 | `data-show`         | Show element if truthy                             |
 | `data-hide`         | Hide element if truthy                             |
 | `data-repeat`       | Repeat children for each item                      |
-| `data-empty`        | Display fallback block when collection is empty    |
+| `data-empty`        | Display fallback block when the value is falsy or the array is empty |
 | `data-class-when`   | Toggle multiple classes via `expr:class` pairs     |
 | `data-format`       | Apply registered formatter before binding          |
 | `data-placeholder`  | Substitute text when bound value is empty          |
 | `data-link`         | Shorthand for `href` assignment on anchors         |
+
+Note: Elements with `data-bind` or `data-bind-html` stop further processing on that node, so `data-bind-attr-*` on the same element and bindings on its children will not run.
 
 ### Built-in formatters
 
@@ -126,7 +128,7 @@ requests resolve to an empty object—callers should handle `ctx.data` according
 - Dot notation: `user.profile.name`
 - Array index: `users[0].name`
 - Variables defined via `data-repeat="item in items"` are scoped to the
-  repeated block. Parent scopes remain readable.
+  repeated block. Parent scopes remain readable. `$index` is also available inside repeats.
 - Missing lookups resolve to an empty string for text bindings and remove the
   target attribute for `data-bind-attr-*`.
 
@@ -147,8 +149,7 @@ PlainBind.ready(({ data }) => {
 
 ### `PlainBind.registerFormatter(name, fn)`
 
-Adds a formatter available via `data-format="name"`. Formatters receive the raw
-value and the full context object.
+Adds a formatter available via `data-format="name"`. Formatters receive `(value, vars, arg)`, where `vars` are the current scope variables (including repeat locals like `$index`) and `arg` is the optional `:arg` suffix from `data-format="name:arg"`.
 
 ```js
 PlainBind.registerFormatter("currency", (value) => {

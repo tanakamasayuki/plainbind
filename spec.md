@@ -102,6 +102,7 @@ PlainBind.js は **プレーン HTML + data-* 属性 + JSON** で UI を構築�
 ```html
 <li data-empty="items">データがありません</li>
 ```
+配列が空、または値が falsy のときに表示される。
 
 ## 8. data-class-when（条件クラス付与）
 ```html
@@ -117,6 +118,7 @@ PlainBind.js は **プレーン HTML + data-* 属性 + JSON** で UI を構築�
 ```js
 PlainBind.registerFormatter("currency", (v)=>"¥"+Number(v).toLocaleString());
 ```
+シグネチャは `(value, vars, arg)`。`vars` はそのスコープの変数（繰り返しの値や `$index` を含む）、`arg` は `data-format="name:arg"` の `arg` 部分。
 
 ビルトインフォーマッタ
 
@@ -139,12 +141,15 @@ PlainBind.registerFormatter("currency", (v)=>"¥"+Number(v).toLocaleString());
 <a data-link="product.url">詳細</a>
 ```
 
+※ `data-bind` / `data-bind-html` を持つ要素では、その処理で打ち切られるため同じ要素の `data-bind-attr-*` や子要素のバインドは実行されない。
+
 ---
 
 # 🔍 データ参照ルール
 
 - `a.b.c` → ネストアクセス  
 - `items[0].name` → 配列アクセス  
+- `data-repeat` 内では繰り返し変数と `$index` が使える  
 - 取得できない場合 → 空文字扱い
 
 ---

@@ -86,11 +86,13 @@ PlainBind は次の優先順位でデータを探します。
 | `data-show`          | 真値のとき表示                                     |
 | `data-hide`          | 真値のとき非表示                                   |
 | `data-repeat`        | 配列をループして要素を複製                         |
-| `data-empty`         | 配列が空のとき代替要素を表示                       |
+| `data-empty`         | 配列が空または値が falsy のとき代替要素を表示       |
 | `data-class-when`    | `式:class` 形式で複数クラスを切り替え              |
 | `data-format`        | 事前登録したフォーマッタを適用                     |
 | `data-placeholder`   | 値が空のとき代替文字列を表示                       |
 | `data-link`          | a 要素の `href` をショートカットで設定             |
+
+※ `data-bind` / `data-bind-html` を持つ要素は、その時点で処理を終了するため同じ要素の `data-bind-attr-*` や子要素のバインドは実行されません。
 
 ### ビルトインフォーマッタ
 
@@ -120,7 +122,7 @@ PlainBind は次の優先順位でデータを探します。
 
 - ドット記法: `user.profile.name`
 - 配列アクセス: `users[0].name`
-- `data-repeat="item in items"` の `item` はそのループ内のみ有効。親スコープは参照可能。
+- `data-repeat="item in items"` の `item` はそのループ内のみ有効。親スコープは参照可能。ループ内では `$index` も利用できます。
 - 取得できなかった値はテキストの場合は空文字、属性の場合は削除として扱う。
 
 ---
@@ -139,7 +141,7 @@ PlainBind.ready(({ data }) => {
 
 ### `PlainBind.registerFormatter(name, fn)`
 
-`data-format="name"` で利用できるフォーマッタを登録します。フォーマッタには生の値とコンテキストが渡されます。
+`data-format="name"` で利用できるフォーマッタを登録します。フォーマッタには生の値、スコープの変数（繰り返しの値や `$index` を含む）、`data-format="name:arg"` の `arg` が渡されます（シグネチャは `(value, vars, arg)`）。
 
 ```js
 PlainBind.registerFormatter("currency", (value) => {
